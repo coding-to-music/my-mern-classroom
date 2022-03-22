@@ -16,6 +16,11 @@ mongoose.connect(MONGODB_URI, {
   useCreateIndex: true,
 });
 
+// Test connection
+mongoose.connection.once("open", function () {
+  console.log("MongoDB database connection established successfully");
+});
+
 // mongoose.connect(config.mongoUri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
 mongoose.connection.on("error", () => {
   throw new Error(`unable to connect to database: ${config.mongoUri}`);
